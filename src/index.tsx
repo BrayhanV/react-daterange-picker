@@ -41,6 +41,7 @@ interface DateRangePickerProps {
 	minDate?: Date | string;
 	maxDate?: Date | string;
 	onChange: (dateRange: DateRange) => void;
+	language: string;
 }
 
 const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props => {
@@ -52,7 +53,8 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 		initialDateRange,
 		minDate,
 		maxDate,
-		definedRanges = defaultRanges
+		definedRanges = defaultRanges,
+		language
 	} = props;
 
 	const minDateValid = parseOptionalDate(minDate, addYears(today, -10));
@@ -70,6 +72,7 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 	const [secondMonth, setSecondMonth] = React.useState<Date>(
 		initialSecondMonth || addMonths(firstMonth, 1)
 	);
+	//const [currentLanguage, setCurrentLanguage] = React.useState<string>(language)
 
 	const { startDate, endDate } = dateRange;
 
@@ -146,6 +149,10 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 		onMonthNavigate
 	};
 
+	/*React.useEffect(() => {
+		if(language) setCurrentLanguage(language);
+	}, [language])*/
+
 	return open ? (
 		<Menu
 			dateRange={dateRange}
@@ -159,6 +166,7 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 			setDateRange={setDateRangeValidated}
 			helpers={helpers}
 			handlers={handlers}
+			language={language}
 		/>
 	) : null;
 };

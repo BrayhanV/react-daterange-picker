@@ -15,6 +15,7 @@ import Month from "./Month";
 import DefinedRanges from "./DefinedRanges";
 import { DateRange, DefinedRange, Setter, NavigationAction } from "../types";
 import { MARKERS } from "..";
+import { translate } from "../i18n";
 
 const styles = (theme: Theme) =>
 	createStyles({
@@ -49,6 +50,7 @@ interface MenuProps extends WithStyles<typeof styles> {
 		onDayHover: (day: Date) => void;
 		onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
 	};
+	language: string;
 }
 
 const Menu: React.FunctionComponent<MenuProps> = props => {
@@ -64,11 +66,13 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 		setSecondMonth,
 		setDateRange,
 		helpers,
-		handlers
+		handlers,
+		language
 	} = props;
 	const { startDate, endDate } = dateRange;
 	const canNavigateCloser = differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
 	const commonProps = { dateRange, minDate, maxDate, helpers, handlers };
+
 	return (
 		<Paper elevation={5} square>
 			<Grid container direction="row" wrap="nowrap">
@@ -76,7 +80,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 					<Grid container className={classes.header} alignItems="center">
 						<Grid item className={classes.headerItem}>
 							<Typography variant="subtitle1">
-								{startDate ? format(startDate, "MMMM DD, YYYY") : "Start Date"}
+								{startDate ? format(startDate, "MMMM DD, YYYY") : translate('startDate', language)}
 							</Typography>
 						</Grid>
 						<Grid item className={classes.headerItem}>
@@ -84,7 +88,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 						</Grid>
 						<Grid item className={classes.headerItem}>
 							<Typography variant="subtitle1">
-								{endDate ? format(endDate, "MMMM DD, YYYY") : "End Date"}
+								{endDate ? format(endDate, "MMMM DD, YYYY") : translate('endDate', language)}
 							</Typography>
 						</Grid>
 					</Grid>

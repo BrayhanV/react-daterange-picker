@@ -1,5 +1,5 @@
 {
-	"name": "@matharumanpreet00/react-daterange-picker",
+	"name": "@brayhanv/react-daterange-picker",
 	"version": "1.0.5",
 	"description": "A react date range picker using Material Design",
 	"author": {
@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@material-ui/core": "^3.9.2",
 		"@material-ui/icons": "^3.0.2",
+		"babel-loader": "^8.2.1",
 		"date-fns": "^1.30.1"
 	},
 	"devDependencies": {
